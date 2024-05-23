@@ -1,0 +1,95 @@
+{
+  "name": "@autoinvent/conveyor",
+  "version": "1.0.0",
+  "description": "GraphiQL for magql",
+  "license": "BlueOak-1.0.0",
+  "author": "Moebius Solutions",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/conveyor.umd.js",
+  "module": "./dist/conveyor.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/conveyor.mjs",
+      "require": "./dist/conveyor.umd.js"
+    },
+    "./dist/styles/index.css": {
+      "import": "./dist/styles/index.css",
+      "require": "./dist/styles/index.css"
+    }
+  },
+  "scripts": {
+    "build": "tsc && vite build",
+    "example": "concurrently --kill-others  \"pnpm:run-example\" \"pnpm:run-tailwindcss\"",
+    "storybook": "concurrently --kill-others \"pnpm:run-storybook\" \"pnpm:run-tailwindcss\"",
+    "format": "pnpx @biomejs/biome format --write *",
+    "run-example": "cd example && vite",
+    "run-storybook": "storybook dev -p 6006",
+    "run-tailwindcss": "tailwindcss -i ./src/styles.css -o ./public/styles/index.css --watch",
+    "run-tsc": "tsc",
+    "run-biome-lint": "@biomejs/biome lint --apply *",
+    "lint": "run-p run-tsc run-biome-lint",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ci": "vitest run",
+    "test:ui": "vitest --ui",
+    "validate": "run-p lint test:ci",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@autoinvent/conveyor": "^1.0.0",
+    "@hookform/error-message": "^2.0.1",
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@tanstack/react-query": "^5.28.4",
+    "@tanstack/react-router": "^1.28.4",
+    "@tanstack/react-store": "^0.3.1",
+    "lucide-react": "^0.372.0",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.51.4",
+    "react-icons": "^4.10.1",
+    "react-use": "^17.4.0",
+    "tailwind-merge": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@biomejs/biome": "1.7.1",
+    "@chromatic-com/storybook": "^1",
+    "@storybook/addon-essentials": "^8.1.0",
+    "@storybook/addon-interactions": "^8.1.0",
+    "@storybook/addon-links": "^8.1.0",
+    "@storybook/addon-onboarding": "^8.1.0",
+    "@storybook/blocks": "^8.1.0",
+    "@storybook/react": "^8.1.0",
+    "@storybook/react-vite": "^8.1.0",
+    "@storybook/test": "^8.1.0",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@types/react-helmet": "6.1.6",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "0.33.0",
+    "concurrently": "^8.2.2",
+    "graphql-request": "^6.1.0",
+    "npm-run-all": "4.1.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^8.1.0",
+    "tailwindcss": "^3.4.3",
+    "typescript": "5.1.6",
+    "vite": "^5.2.11",
+    "vite-plugin-dts": "^3.3.1",
+    "vite-plugin-node-polyfills": "^0.11.2",
+    "vite-plugin-svgr": "^4.2.0",
+    "vitest": "0.33.0"
+  }
+}
