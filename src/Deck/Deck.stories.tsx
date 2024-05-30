@@ -8,7 +8,7 @@ import {
   CardContent,
   CardHeader,
   CardField,
-} from '@/Conveyor/Deck';
+} from '@/Deck';
 
 const meta = {
   title: 'Commons/Deck',

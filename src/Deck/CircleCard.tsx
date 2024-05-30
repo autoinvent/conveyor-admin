@@ -20,16 +20,16 @@ export const CircleCard = React.forwardRef<
     <div
       ref={ref}
       className={twMerge(
-        'relative group border rounded-lg bg-[--bg-color] text-[--text-color] border-solid border-[--border-color] shadow-sm inline-block m-2 p-4 w-[300px] h-[300px] overflow-hidden justify-center transition-all duration-300 ease-in-out hover:h-[300px]}',
+        'group relative m-2 inline-block h-[300px] w-[300px] justify-center overflow-hidden rounded-lg border border-[--border-color] border-solid bg-[--bg-color] p-4 text-[--text-color] shadow-sm transition-all duration-300 ease-in-out hover:h-[300px]}',
         className,
       )}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       {...props}
     >
-      <div className="absolute overflow-hidden top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[70%] w-[175px] h-[175px] bg-[--border-color] rounded-[100px] transition-all duration-300 flex items-center justify-center group-hover:w-full group-hover:h-full group-hover:rounded-lg group-hover:-translate-x-1/2 group-hover:-translate-y-1/2">
+      <div className="-translate-x-1/2 -translate-y-[70%] group-hover:-translate-x-1/2 group-hover:-translate-y-1/2 absolute top-1/2 left-1/2 flex h-[175px] w-[175px] transform items-center justify-center overflow-hidden rounded-[100px] bg-[--border-color] transition-all duration-300 group-hover:h-full group-hover:w-full group-hover:rounded-lg">
         {/* Render the content always */}
-        <div className="opacity-100 scale-[60%] transition-all duration-300 ease-in-out p-[10px] box-border group-hover:scale-100">
+        <div className="box-border scale-[60%] p-[10px] opacity-100 transition-all duration-300 ease-in-out group-hover:scale-100">
           {React.Children.map(children, (child) => {
             if (React.isValidElement(child)) {
               if (!isHovered) {

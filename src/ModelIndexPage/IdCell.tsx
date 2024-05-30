@@ -11,7 +11,7 @@ export const IdCell = ({ model }: { model: string }) => {
     <ModelIndex.Table.Cell fieldName={fieldName}>
       <Link
         to={`/${model}/${value}`}
-        className="underline underline-offset-1 text-cyan-600"
+        className="text-cyan-600 underline underline-offset-1"
       >
         {value}
       </Link>

@@ -1,11 +1,14 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from '@tanstack/react-router';
-
-import { useAlerts } from '@/Alerts';
-import { DataLens } from '@/Lenses';
-import { ModelForm, ModelFormDeleteModal } from '@/ModelForm';
-import { ID, OnSaveProps } from '@/types';
-import { humanizeText } from '@/utils';
+import {
+  useAlerts,
+  DataLens,
+  ModelForm,
+  ModelFormDeleteModal,
+  type ID,
+  type OnSaveProps,
+  humanizeText,
+} from '@autoinvent/conveyor';
 
 import { useConveyor } from '../Conveyor';
 import {
@@ -93,6 +96,7 @@ export const ModelDetailPage = ({ model, id }: ModelDetailPageProps) => {
       .map((field) => field.name),
   });
   const onUpdate = async ({ data, dirtyFields }: OnSaveProps) => {
+    // biome-ignore lint/complexity/noForEach: todo: v2
     Object.keys(data).forEach((fieldName) => {
       if (typeof data[fieldName] === 'object') {
         data[fieldName] = data[fieldName]?.id;
@@ -154,7 +158,7 @@ export const ModelDetailPage = ({ model, id }: ModelDetailPageProps) => {
           <span>
             <Link
               to={`/${currModel}`}
-              className="underline underline-offset-1 text-cyan-600"
+              className="text-cyan-600 underline underline-offset-1"
             >
               {humanizeText(currModel)}
             </Link>

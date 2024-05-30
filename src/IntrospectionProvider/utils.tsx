@@ -1,4 +1,4 @@
-import { MQLType } from './types';
+import type { MQLType } from './types';
 
 export const extractMQLType = (type: MQLType): string => {
   switch (type.kind) {

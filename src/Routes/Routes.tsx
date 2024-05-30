@@ -1,4 +1,4 @@
-import { ComponentType, ReactNode, useMemo, useState } from 'react';
+import { type ComponentType, type ReactNode, useMemo, useState } from 'react';
 import {
   Outlet,
   RouterProvider,
@@ -8,7 +8,7 @@ import {
 } from '@tanstack/react-router';
 import { Store, useStore } from '@tanstack/react-store';
 
-import { RoutesStore, RoutesStoreContext } from './RoutesStoreContext';
+import { type RoutesStore, RoutesStoreContext } from './RoutesStoreContext';
 
 export interface RoutesProps {
   RootComponent?: ComponentType;

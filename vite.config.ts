@@ -1,43 +1,34 @@
-/// <reference types="vitest" />
-/// <reference types="vite/client" />
+import { resolve } from 'node:path';
 
-import { resolve } from "node:path";
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import dts from "vite-plugin-dts";
-import { nodePolyfills } from "vite-plugin-node-polyfills";
-import svgr from "vite-plugin-svgr";
+import { defineConfig } from 'vite';
+
+import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    dts({
-      insertTypesEntry: true,
-    }),
-    nodePolyfills(),
-    svgr(),
-  ],
+  // https://github.com/vitejs/vite/pull/8090
+  define: {"process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)}, 
+  plugins: [react()],
   build: {
     sourcemap: true,
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
-      name: "conveyorAdmin",
-      fileName: "conveyorAdmin",
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'conveyor-admin',
+      fileName: 'conveyor-admin',
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: ['react', 'react-dom'],
       output: {
         globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
+          react: 'React',
+          'react-dom': 'ReactDOM',
         },
       },
     },
   },
   resolve: {
     alias: {
-      "@": "/src",
+      '@': '/src',
     },
   },
 });

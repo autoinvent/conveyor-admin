@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
-import {  Lens, Lenses, SearchBar, SearchResult, useAlerts } from '@autoinvent/conveyor';
+import {
+  Lens,
+  Lenses,
+  SearchBar,
+  type SearchResult,
+  useAlerts,
+} from '@autoinvent/conveyor';
 import { Link, useNavigate } from '@tanstack/react-router';
 
 import { useConveyor } from '@/Conveyor';
@@ -29,6 +35,7 @@ export const Home = () => {
     if (isLoading === false) {
       if (isSuccess) {
         const newSearchedModels: Record<string, SearchResult[]> = {};
+        // biome-ignore lint/complexity/noForEach: to be reconfigured in v2
         data?.[operationName]?.forEach((searchItem: SearchResult) => {
           const modelName = searchItem.type;
           if (!newSearchedModels[modelName]) {

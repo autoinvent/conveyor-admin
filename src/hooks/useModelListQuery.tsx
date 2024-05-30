@@ -1,5 +1,5 @@
-import { TableView, camelToSnakeCase} from '@autoinvent/conveyor'
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { type TableView, camelToSnakeCase } from '@autoinvent/conveyor';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
 import { useConveyor } from '@/Conveyor';
 import { getPrimaryKeys, getQueryFields } from '@/utils';

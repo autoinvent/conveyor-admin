@@ -1,6 +1,4 @@
-/// <reference types="vite-plugin-svgr/client" />
-
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import { LucideHome, LucideBox, ChevronDown } from 'lucide-react';
 import * as Accordion from '@radix-ui/react-accordion';
 import { Link, Outlet } from '@tanstack/react-router';
@@ -15,42 +13,42 @@ export const Dashboard = ({ ...props }: DashboardProps) => {
   const { selected: models } = useConveyor((state) => state.models);
 
   return (
-    <div className="w-screen h-screen text-[--text-color] bg-[--bg-color]">
+    <div className="h-screen w-screen bg-[--bg-color] text-[--text-color]">
       <aside
-        className="fixed w-14 whitespace-nowrap group text-[--text-muted] inset-y-0 left-0 z-10 border-[--fg-accent] border-r bg-[--bg-accent] hover:w-[150px] transition-[width]"
+        className="group fixed inset-y-0 left-0 z-10 w-14 whitespace-nowrap border-[--fg-accent] border-r bg-[--bg-accent] text-[--text-muted] transition-[width] hover:w-[150px]"
         {...props}
       >
         <nav className="flex flex-col gap-4 px-2 py-5">
-          <div className="items-start transition-colors inline-flex text-start gap-2 py-1 rounded-md text-lg font-semibold text-[--text-color] cursor-default overflow-hidden">
+          <div className="inline-flex cursor-default items-start gap-2 overflow-hidden rounded-md py-1 text-start font-semibold text-[--text-color] text-lg transition-colors">
             {/* <Logo className="h-9 w-9" /> */}
             hello
-            <span className="ml-1.5 mt-1.5 hidden group-hover:inline">
+            <span className="mt-1.5 ml-1.5 hidden group-hover:inline">
               Conveyor
             </span>
           </div>
-          <hr className="border-t border-[--fg-accent]" />
+          <hr className="border-[--fg-accent] border-t" />
           <Link
-            className="py-1.5 rounded-md hover:bg-[--fg-accent] items-start transition-colors h-9 inline-flex w-full text-start gap-2 text-lg font-semibold hover:text-[--text-color] overflow-hidden"
+            className="inline-flex h-9 w-full items-start gap-2 overflow-hidden rounded-md py-1.5 text-start font-semibold text-lg transition-colors hover:bg-[--fg-accent] hover:text-[--text-color]"
             to="/"
           >
-            <LucideHome className="w-9 " />
+            <LucideHome className="w-9" />
             <span className="ml-2 hidden group-hover:inline">Home</span>
           </Link>
           <Accordion.Root type="single" defaultValue="item-1" collapsible>
             <Accordion.Item className="transition-all" value="Models">
               <Accordion.Header className="flex">
-                <Accordion.AccordionTrigger className="rounded-md hover:bg-[--fg-accent] border-0 px-0 flex flex-1 items-center justify-between py-1.5 font-semibold text-lg transition-all hover:text-[--text-color] [&[data-state=open]>svg]:rotate-180">
-                  <LucideBox className="w-9  transition-transform duration-200" />
+                <Accordion.AccordionTrigger className="flex flex-1 items-center justify-between rounded-md border-0 px-0 py-1.5 font-semibold text-lg transition-all [&[data-state=open]>svg]:rotate-180 hover:bg-[--fg-accent] hover:text-[--text-color]">
+                  <LucideBox className="w-9 transition-transform duration-200" />
                   <span className="ml-3 hidden group-hover:inline">Models</span>
-                  <ChevronDown className="hidden group-hover:inline h-4 w-4 shrink-0 transition-transform duration-200" />
+                  <ChevronDown className="hidden h-4 w-4 shrink-0 transition-transform duration-200 group-hover:inline" />
                 </Accordion.AccordionTrigger>
               </Accordion.Header>
-              <Accordion.AccordionContent className="hidden group-hover:flex flex-col mt-1 gap-1 overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+              <Accordion.AccordionContent className="mt-1 hidden flex-col gap-1 overflow-hidden text-sm transition-all group-hover:flex data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
                 {Object.keys(models).map((model) => (
                   <Link
                     key={model}
                     to={`/${model}`}
-                    className=" hover:bg-[--fg-accent] rounded-md py-1.5 pl-[52px] inline h-9 w-full text-lg font-semibold hover:text-[--text-color] overflow-hidden"
+                    className="inline h-9 w-full overflow-hidden rounded-md py-1.5 pl-[52px] font-semibold text-lg hover:bg-[--fg-accent] hover:text-[--text-color]"
                   >
                     {model}
                   </Link>

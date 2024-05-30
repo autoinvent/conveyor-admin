@@ -1,11 +1,15 @@
-import { ComponentType, ReactNode, useEffect } from 'react';
-import { LoadingScreen, camelToSnakeCase, useAlerts } from '@autoinvent/conveyor'
+import { type ComponentType, type ReactNode, useEffect } from 'react';
+import {
+  LoadingScreen,
+  camelToSnakeCase,
+  useAlerts,
+} from '@autoinvent/conveyor';
 import { useQuery } from '@tanstack/react-query';
 
-import {useConveyor} from '@/Conveyor'
-import { MQLFieldType } from '@/types';
+import { useConveyor } from '@/Conveyor';
+import type { MQLFieldType } from '@/types';
 
-import { MQLType } from './types';
+import type { MQLType } from './types';
 import { extractMQLBaseType, extractMQLType } from './utils';
 
 export interface FetchHandler {
@@ -66,10 +70,12 @@ export const IntrospectionProvider = ({
           const FIELDS = 'fields';
           // Extract models from query types
           const queryFields: MQLQueryField[] = data.__schema.queryType.fields;
+          // biome-ignore lint/complexity/noForEach: to be reconfigured in v2
           queryFields
             .filter(({ name }) => name.endsWith('_item'))
             .forEach(({ type, args }) => {
               const modelName = type.name;
+              // biome-ignore lint/complexity/noForEach: to be reconfigured in v2
               args.forEach(({ type: argType, name: fieldName }) => {
                 const operation = 'item';
                 if (!models[modelName]) {
@@ -78,20 +84,30 @@ export const IntrospectionProvider = ({
                 if (!models[modelName][FIELDS]) {
                   models[modelName][FIELDS] = {};
                 }
+                // biome-ignore lint/style/noNonNullAssertion: To be replaced using immer and nullish assignment in v2
                 if (!models[modelName][FIELDS]![fieldName]) {
+                  // biome-ignore lint/style/noNonNullAssertion: To be replaced using immer and nullish assignment in v2
                   models[modelName][FIELDS]![fieldName] = {};
                 }
+                // biome-ignore lint/style/noNonNullAssertion: To be replaced using immer and nullish assignment in v2
                 if (!models[modelName][FIELDS]![fieldName][operation]) {
+                  // biome-ignore lint/style/noNonNullAssertion: To be replaced using immer and nullish assignment in v2
                   models[modelName][FIELDS]![fieldName][operation] =
                     extractMQLType(argType);
                 }
               });
+
+              // biome-ignore lint/complexity/noForEach: to be reconfigured in v2
               type.fields.forEach(({ type: fieldType, name: fieldName }) => {
                 const operation = 'baseType';
+                // biome-ignore lint/style/noNonNullAssertion: To be replaced using immer and nullish assignment in v2
                 if (!models[modelName][FIELDS]![fieldName]) {
+                  // biome-ignore lint/style/noNonNullAssertion: To be replaced using immer and nullish assignment in v2
                   models[modelName][FIELDS]![fieldName] = {};
                 }
+                // biome-ignore lint/style/noNonNullAssertion: To be replaced using immer and nullish assignment in v2
                 if (!models[modelName][FIELDS]![fieldName][operation]) {
+                  // biome-ignore lint/style/noNonNullAssertion: To be replaced using immer and nullish assignment in v2
                   models[modelName][FIELDS]![fieldName][operation] =
                     extractMQLBaseType(fieldType);
                 }
@@ -99,17 +115,22 @@ export const IntrospectionProvider = ({
             });
           const mutationFields: Omit<MQLQueryField, 'type'>[] =
             data.__schema.mutationType.fields;
+          // biome-ignore lint/complexity/noForEach: to be reconfigured in v2
           Object.keys(models).forEach((modelName) => {
             const queryName = camelToSnakeCase(modelName);
             const regexp = new RegExp(`${queryName}_[^_]*$`, 'g');
+            // biome-ignore lint/complexity/noForEach: to be reconfigured in v2
             mutationFields
               .filter(({ name }) => name.match(regexp))
               .forEach(({ name, args }) => {
                 const operation = name.substring(
                   queryName.length + 1,
                 ) as keyof MQLFieldType;
+                // biome-ignore lint/complexity/noForEach: to be reconfigured in v2
                 args.forEach(({ type: argType, name: fieldName }) => {
+                  // biome-ignore lint/style/noNonNullAssertion: To be replaced using immer and nullish assignment in v2
                   if (!models[modelName][FIELDS]![fieldName][operation]) {
+                    // biome-ignore lint/style/noNonNullAssertion: To be replaced using immer and nullish assignment in v2
                     models[modelName][FIELDS]![fieldName][operation] =
                       extractMQLType(argType);
                   }

@@ -1,22 +1,25 @@
 import { Helmet } from 'react-helmet';
 import { request } from 'graphql-request';
-import {Table} from '@autoinvent/conveyor'
 
-// import logo from '../src/logo.svg';
-// import { Conveyor } from '../src/index';
+import { ConveyorLogo } from '@autoinvent/conveyor';
+
+import { Conveyor } from '@/index';
 
 const App = () => {
   const gqlUrl = '/graphql';
-
   return (
     <>
       <Helmet>
-        {/* <link id="favicon" rel="icon" type="image/svg+xml" href={logo} /> */}
+        <link
+          id="favicon"
+          rel="icon"
+          type="image/svg+xml"
+          href={ConveyorLogo}
+        />
       </Helmet>
-      <Table  columnIds={['hello']}  data={[{hello: 'world'}]}/>
-      {/* <Conveyor
+      <Conveyor
         fetcher={(params) => request(gqlUrl, params.document, params.variables)}
-      /> */}
+      />
     </>
   );
 };

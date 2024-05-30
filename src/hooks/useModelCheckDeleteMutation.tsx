@@ -1,4 +1,4 @@
-import { ID } from '@autoinvent/conveyor';
+import type { ID } from '@autoinvent/conveyor';
 import { useMutation } from '@tanstack/react-query';
 
 import { useConveyor } from '@/Conveyor';
@@ -10,7 +10,7 @@ export interface useModelCheckDeleteMutationProps {
 export const useModelCheckDeleteMutation = ({
   model,
 }: useModelCheckDeleteMutationProps) => {
-  const operationName = `check_delete`;
+  const operationName = 'check_delete';
   const {
     selected: { fetcher },
   } = useConveyor((state) => state);

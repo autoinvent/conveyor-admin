@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { StoreSelector } from '@autoinvent/conveyor';
+import type { StoreSelector } from '@autoinvent/conveyor';
 import { useStore } from '@tanstack/react-store';
 
-import { ConveyorStore, ConveyorStoreContext } from './ConveyorStoreContext';
+import { type ConveyorStore, ConveyorStoreContext } from './ConveyorStoreContext';
 
 export const useConveyor = (selector?: StoreSelector<ConveyorStore>) => {
   const conveyorStore = useContext(ConveyorStoreContext);

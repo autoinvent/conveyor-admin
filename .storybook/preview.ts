@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react';
 
+import '@autoinvent/conveyor/dist/styles/index.css';
 import '../public/styles/index.css';
 
 const preview: Preview = {

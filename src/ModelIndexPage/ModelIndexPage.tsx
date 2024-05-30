@@ -1,9 +1,23 @@
-import { Fragment, ReactNode, useEffect, useState } from 'react';
-import { ModelFormDeleteModal, ModelIndex,  ID, OnSaveProps, humanizeText, isModelType , useAlerts } from '@autoinvent/conveyor';
+import { Fragment, type ReactNode, useEffect, useState } from 'react';
+import {
+  ModelFormDeleteModal,
+  ModelIndex,
+  type ID,
+  type OnSaveProps,
+  humanizeText,
+  isModelType,
+  useAlerts,
+} from '@autoinvent/conveyor';
 import { useNavigate, useParams } from '@tanstack/react-router';
 
 import { useConveyor } from '@/Conveyor';
-import { useModelCheckDeleteMutation, useModelDeleteMutation,useModelListMutation,  useModelListQuery, useModelUpdateMutation } from '@/hooks';
+import {
+  useModelCheckDeleteMutation,
+  useModelDeleteMutation,
+  useModelListMutation,
+  useModelListQuery,
+  useModelUpdateMutation,
+} from '@/hooks';
 import { parseMQLType } from '@/utils';
 
 import { IdCell } from './IdCell';
@@ -59,6 +73,7 @@ export const ModelIndexPage = ({ model, children }: ModelIndexPage) => {
     fieldNames: updatableFieldNames,
   });
   const onSave = async ({ data, dirtyFields }: OnSaveProps) => {
+    // biome-ignore lint/complexity/noForEach: todo v2
     Object.keys(data).forEach((fieldName) => {
       if (typeof data[fieldName] === 'object') {
         data[fieldName] = data[fieldName]?.id;
@@ -180,7 +195,8 @@ export const ModelIndexPage = ({ model, children }: ModelIndexPage) => {
                   {modelIndexFields.map((field) => {
                     if (field.name === 'id') {
                       return <IdCell key={field.name} model={currModel} />;
-                    } else if (isModelType(field)) {
+                    }
+                    if (isModelType(field)) {
                       return (
                         <RelationshipCell key={field.name} field={field} />
                       );

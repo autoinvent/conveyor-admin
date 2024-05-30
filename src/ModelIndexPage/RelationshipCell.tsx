@@ -1,11 +1,19 @@
 import { useFormContext } from 'react-hook-form';
-import { DataLens, type Field, Lens, ModelFormValue, ModelFormInput, ModelIndex, useModelIndex } from '@autoinvent/conveyor'
+import {
+  DataLens,
+  type Field,
+  Lens,
+  ModelFormValue,
+  ModelFormInput,
+  ModelIndex,
+  useModelIndex,
+} from '@autoinvent/conveyor';
 import { Link } from '@tanstack/react-router';
 
 export const RelationshipCell = ({ field }: { field: Field }) => {
   const fieldName = field.name;
   const { getValues } = useFormContext();
-  const { selected } = useModelIndex((state) => ({
+  const { selected } = useModelIndex((state: any) => ({
     onOpenFieldSelect: state.onOpenFieldSelect,
   }));
   const value = getValues(fieldName);
@@ -15,7 +23,7 @@ export const RelationshipCell = ({ field }: { field: Field }) => {
       <Lens lens={DataLens.DISPLAY}>
         {value?.id ? (
           <Link to={`/${field.type}/${value.id}`}>
-            <span className="underline underline-offset-1 text-cyan-600 h-full w-full p-1.5 text-start align-baseline">
+            <span className="h-full w-full p-1.5 text-start align-baseline text-cyan-600 underline underline-offset-1">
               {value.id}
             </span>
           </Link>

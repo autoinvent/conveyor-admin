@@ -8,7 +8,7 @@ export const CardField = React.forwardRef<
   <pre
     ref={ref}
     className={twMerge(
-      'mb-2 font-normal block whitespace-pre-line w-[250px] flex-shrink-0',
+      'mb-2 block w-[250px] flex-shrink-0 whitespace-pre-line font-normal',
       className,
     )}
     {...props}

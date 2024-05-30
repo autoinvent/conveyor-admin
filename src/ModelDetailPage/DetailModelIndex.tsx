@@ -1,10 +1,26 @@
 import { useEffect, useState } from 'react';
-import {ModelFormDeleteModal, ModelIndex, ID, OnSaveProps, TableView, camelToSnakeCase, humanizeText, isModelType, useAlerts} from '@autoinvent/conveyor'
+import {
+  ModelFormDeleteModal,
+  ModelIndex,
+  type ID,
+  type OnSaveProps,
+  type TableView,
+  camelToSnakeCase,
+  humanizeText,
+  isModelType,
+  useAlerts,
+} from '@autoinvent/conveyor';
 import { useNavigate } from '@tanstack/react-router';
 
 import { useConveyor } from '@/Conveyor';
 import { IdCell, RelationshipCell } from '@/ModelIndexPage';
-import { useModelCheckDeleteMutation, useModelDeleteMutation,useModelListMutation,  useModelListQuery, useModelUpdateMutation } from '@/hooks';
+import {
+  useModelCheckDeleteMutation,
+  useModelDeleteMutation,
+  useModelListMutation,
+  useModelListQuery,
+  useModelUpdateMutation,
+} from '@/hooks';
 import { parseMQLType } from '@/utils';
 
 export interface DetailModelIndexProps {
@@ -71,6 +87,7 @@ export const DetailModelIndex = ({
     fieldNames: updatableFieldNames,
   });
   const onSave = async ({ data, dirtyFields }: OnSaveProps) => {
+    // biome-ignore lint/complexity/noForEach: in v2
     Object.keys(data).forEach((fieldName) => {
       if (typeof data[fieldName] === 'object') {
         data[fieldName] = data[fieldName]?.id;
@@ -165,7 +182,8 @@ export const DetailModelIndex = ({
               {modelIndexFields.map((field) => {
                 if (field.name === 'id') {
                   return <IdCell key={field.name} model={fieldModel} />;
-                } else if (isModelType(field)) {
+                }
+                if (isModelType(field)) {
                   return <RelationshipCell key={field.name} field={field} />;
                 }
                 return (

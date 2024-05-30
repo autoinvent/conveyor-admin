@@ -1,4 +1,4 @@
-import { TableView, camelToSnakeCase} from '@autoinvent/conveyor'
+import { type TableView, camelToSnakeCase } from '@autoinvent/conveyor';
 import { useMutation } from '@tanstack/react-query';
 
 import { useConveyor } from '@/Conveyor';

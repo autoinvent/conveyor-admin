@@ -7,7 +7,7 @@ export const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     className={twMerge(
-      'flex flex-col gap-1.5 items-center justify-center p-0 bg-transparent border-0 transform translate-y-[200px] max-h-16 group-hover:translate-y-0',
+      'flex max-h-16 translate-y-[200px] transform flex-col items-center justify-center gap-1.5 border-0 bg-transparent p-0 group-hover:translate-y-0',
       className,
     )}
     ref={ref}

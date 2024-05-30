@@ -1,9 +1,9 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
 import { useConveyor } from '@/Conveyor';
 
 export interface UseSearchQueryProps {
-  searchValue: String;
+  searchValue: string;
   enabled?: boolean;
 }
 

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useStore } from '@tanstack/react-store';
 
-import { RoutesStore, RoutesStoreContext } from './RoutesStoreContext';
+import { type RoutesStore, RoutesStoreContext } from './RoutesStoreContext';
 
 export const useRoutes = () => {
   let routesStore = useContext(RoutesStoreContext);

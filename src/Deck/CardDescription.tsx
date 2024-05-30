@@ -7,7 +7,7 @@ export const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     className={twMerge(
-      'text-xs text-stone-400 flex-shrink-0 mb-2 min-h-0 group-hover:translate-y-[215px] group-hover:items-center',
+      'mb-2 min-h-0 flex-shrink-0 text-stone-400 text-xs group-hover:translate-y-[215px] group-hover:items-center',
       className,
     )}
     ref={ref}

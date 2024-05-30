@@ -1,4 +1,4 @@
-import { DataType, camelToSnakeCase } from '@autoinvent/conveyor';
+import { type DataType, camelToSnakeCase } from '@autoinvent/conveyor';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { useConveyor } from '@/Conveyor';

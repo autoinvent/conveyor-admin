@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from '@tanstack/react-router';
+import {
+  ModelForm,
+  type OnSaveProps,
+  humanizeText,
+  useAlerts,
+} from '@autoinvent/conveyor';
 
-import { useAlerts } from '@/Alerts';
-import { ModelForm } from '@/ModelForm';
+import { useConveyor } from '@/Conveyor';
+import { useModelCreateMutation, useModelListMutation } from '@/hooks';
 import { ScalarTypes } from '@/enums';
-import { OnSaveProps } from '@/types';
-import { humanizeText } from '@/utils';
-
-import { useConveyor } from '../Conveyor';
-import { useModelCreateMutation, useModelListMutation } from '../hooks';
-import { parseMQLType } from '../utils';
+import { parseMQLType } from '@/utils';
 
 export interface ModelCreatePageProps {
   model?: string;
@@ -77,6 +78,7 @@ export const ModelCreatePage = ({ model }: ModelCreatePageProps) => {
   });
 
   const onCreate = async ({ data, dirtyFields }: OnSaveProps) => {
+    // biome-ignore lint/complexity/noForEach: in v2
     Object.keys(data).forEach((fieldName) => {
       if (typeof data[fieldName] === 'object') {
         data[fieldName] = data[fieldName]?.id;
