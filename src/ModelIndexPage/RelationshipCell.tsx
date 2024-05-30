@@ -12,11 +12,11 @@ import { Link } from '@tanstack/react-router';
 
 export const RelationshipCell = ({ field }: { field: Field }) => {
   const fieldName = field.name;
-  const { getValues } = useFormContext();
+  const methods = useFormContext();
   const { selected } = useModelIndex((state: any) => ({
     onOpenFieldSelect: state.onOpenFieldSelect,
   }));
-  const value = getValues(fieldName);
+  const value = methods?.getValues(fieldName);
 
   return (
     <ModelIndex.Table.Cell fieldName={fieldName}>

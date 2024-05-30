@@ -4,8 +4,8 @@ import { Link } from '@tanstack/react-router';
 
 export const IdCell = ({ model }: { model: string }) => {
   const fieldName = 'id';
-  const { getValues } = useFormContext();
-  const value = getValues(fieldName);
+  const methods = useFormContext();
+  const value = methods?.getValues(fieldName);
 
   return (
     <ModelIndex.Table.Cell fieldName={fieldName}>

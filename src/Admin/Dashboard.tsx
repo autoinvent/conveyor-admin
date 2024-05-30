@@ -3,7 +3,7 @@ import { LucideHome, LucideBox, ChevronDown } from 'lucide-react';
 import * as Accordion from '@radix-ui/react-accordion';
 import { Link, Outlet } from '@tanstack/react-router';
 
-// import Logo from '@/logo.svg?react'; // TODO
+import { ConveyorLogo } from '@autoinvent/conveyor';
 
 import { useConveyor } from '@/Conveyor';
 
@@ -20,8 +20,7 @@ export const Dashboard = ({ ...props }: DashboardProps) => {
       >
         <nav className="flex flex-col gap-4 px-2 py-5">
           <div className="inline-flex cursor-default items-start gap-2 overflow-hidden rounded-md py-1 text-start font-semibold text-[--text-color] text-lg transition-colors">
-            {/* <Logo className="h-9 w-9" /> */}
-            hello
+            <img src={ConveyorLogo} alt="Conveyor Logo" className="h-9 w-9" />
             <span className="mt-1.5 ml-1.5 hidden group-hover:inline">
               Conveyor
             </span>

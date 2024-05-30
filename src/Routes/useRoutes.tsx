@@ -4,7 +4,7 @@ import { useStore } from '@tanstack/react-store';
 import { type RoutesStore, RoutesStoreContext } from './RoutesStoreContext';
 
 export const useRoutes = () => {
-  let routesStore = useContext(RoutesStoreContext);
+  const routesStore = useContext(RoutesStoreContext);
   if (!routesStore) {
     throw new Error(
       'useRoutes must be used within RouteStoreContext.Provider.',
