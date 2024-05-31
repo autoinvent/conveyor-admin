@@ -16,13 +16,7 @@
       "@/*": ["src/*"]
     },
     "types": ["vite/client"],
-
-    // Build
-    "declaration": true,
-    "declarationDir": "./dist/types",
-    "emitDeclarationOnly": true,
-    "outDir": "./dist",
-    "tsBuildInfoFile": "./.build/tsconfig.tsbuildinfo",
+    "noEmit": true,
 
     // Linting
     "strict": true,
@@ -30,6 +24,6 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/", "example/"],
+  "include": ["src/"],
   "exclude": ["node_modules", "dist"]
 }

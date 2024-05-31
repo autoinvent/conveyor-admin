@@ -29,7 +29,7 @@ type Story = StoryObj<typeof meta>;
 export const BasicUsage: Story = {
   render: (props) => {
     return (
-      <div className="max-w-[80%] mx-[10%]">
+      <div className="mx-[10%] max-w-[80%]">
         <Deck>
           <ExampleCard />
           <ExampleCard />

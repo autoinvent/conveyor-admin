@@ -1,15 +1,12 @@
 import { Helmet } from 'react-helmet';
-import { request, GraphQLClient } from 'graphql-request';
+import { request } from 'graphql-request';
 
 import { ConveyorLogo } from '@autoinvent/conveyor';
-
-import { Conveyor } from '@/index';
+import { Conveyor } from '../src/index';
 
 const endpoint = 'http://localhost:5173/graphql';
-// const client = new GraphQLClient(endpoint);
 
 const App = () => {
-  // client.request('query { task_list() { message } }', {});
   return (
     <>
       <Helmet>

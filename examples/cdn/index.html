@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- <link id="favicon" rel="icon" type="image/svg+xml" href={ConveyorLogo} /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conveyor</title>
+  <style>
+    body {
+      height: 100%;
+      margin: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+  </style>
+
+  <!--
+      This example depends on Promise and fetch, which are available in modern browsers, but can be "polyfilled" for older browsers.
+      Conveyor itself depends on React DOM.
+      If you do not want to rely on a CDN, you can host these files locally or nclude them directly in your favored resource bundler.
+    -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <link crossorigin href="/dist/ConveyorAdmin/styles/index.css" rel="stylesheet" />
+  <script crossorigin src="/dist/ConveyorAdmin/conveyor-admin.umd.cjs"></script>
+  <link crossorigin href="/dist/Conveyor/styles/index.css" rel="stylesheet" />
+  <script crossorigin src="/dist/Conveyor/conveyor.umd.cjs"></script>
+
+</head>
+
+<body>
+  <div id="conveyorAdmin">Loading...</div>
+  <script defer>
+    const Conveyor = window['conveyor-admin'].Conveyor;
+
+    const gqlUrl = "/graphql";
+    const root = ReactDOM.createRoot(document.getElementById("conveyorAdmin"))
+    root.render(
+      React.createElement(Conveyor, {
+        fetcher: (params) => {
+          return fetch(gqlUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              query: params.document,
+              variables: params.variables,
+            }),
+          }).then(async (res) => {
+            const x = await res.json();
+            if (x?.data) {
+              return x.data
+            } else {
+              throw x.errors
+            }
+          })
+        }
+      }),
+    );
+  </script>
+</body>
+
+</html>

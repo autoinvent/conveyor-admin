@@ -29,3 +29,7 @@ dist-ssr
 *.tgz
 *.tsbuildinfo
 *storybook.log
+
+# vite-react-typescript example
+examples/**/node_modules
+examples/**/*.tgz

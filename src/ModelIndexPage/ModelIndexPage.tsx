@@ -194,7 +194,14 @@ export const ModelIndexPage = ({ model, children }: ModelIndexPage) => {
                 <ModelIndex.Table.Row>
                   {modelIndexFields.map((field) => {
                     if (field.name === 'id') {
-                      return <IdCell key={field.name} model={currModel} />;
+                      return (
+                        <ModelIndex.Table.Cell
+                          key={field.name}
+                          fieldName={field.name}
+                        >
+                          <IdCell model={currModel} />
+                        </ModelIndex.Table.Cell>
+                      );
                     }
                     if (isModelType(field)) {
                       return (

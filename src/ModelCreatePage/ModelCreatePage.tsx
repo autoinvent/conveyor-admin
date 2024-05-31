@@ -5,11 +5,11 @@ import {
   type OnSaveProps,
   humanizeText,
   useAlerts,
+  ScalarTypes,
 } from '@autoinvent/conveyor';
 
 import { useConveyor } from '@/Conveyor';
 import { useModelCreateMutation, useModelListMutation } from '@/hooks';
-import { ScalarTypes } from '@/enums';
 import { parseMQLType } from '@/utils';
 
 export interface ModelCreatePageProps {
