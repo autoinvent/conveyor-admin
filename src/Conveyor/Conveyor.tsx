@@ -5,8 +5,10 @@ import { Store } from '@tanstack/react-store';
 
 import { Admin } from '@/Admin';
 import { IntrospectionProvider } from '@/IntrospectionProvider';
-import { type ConveyorStore, ConveyorStoreContext } from './ConveyorStoreContext';
-
+import {
+  type ConveyorStore,
+  ConveyorStoreContext,
+} from './ConveyorStoreContext';
 
 export interface MQLResponse {
   [operationName: string]: Record<string, any>;

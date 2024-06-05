@@ -1,4 +1,4 @@
-import { camelToSnakeCase} from '@autoinvent/conveyor'
+import { camelToSnakeCase } from '@autoinvent/conveyor';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 import { getPrimaryKeys, getQueryFields, getItemFieldParams } from '../utils';

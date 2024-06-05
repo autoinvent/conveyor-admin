@@ -13,7 +13,7 @@ import {
 import { useNavigate } from '@tanstack/react-router';
 
 import { useConveyor } from '@/Conveyor';
-import { IdCell, RelationshipCell } from '@/ModelIndexPage';
+import { IdValue, RelationshipField } from '@/ModelIndexPage';
 import {
   useModelCheckDeleteMutation,
   useModelDeleteMutation,
@@ -181,10 +181,24 @@ export const DetailModelIndex = ({
             <ModelIndex.Table.Row>
               {modelIndexFields.map((field) => {
                 if (field.name === 'id') {
-                  return <IdCell key={field.name} model={fieldModel} />;
+                  return (
+                    <ModelIndex.Table.Cell
+                      key={field.name}
+                      fieldName={field.name}
+                    >
+                      <IdValue model={fieldModel} />
+                    </ModelIndex.Table.Cell>
+                  );
                 }
                 if (isModelType(field)) {
-                  return <RelationshipCell key={field.name} field={field} />;
+                  return (
+                    <ModelIndex.Table.Cell
+                      key={field.name}
+                      fieldName={field.name}
+                    >
+                      <RelationshipField key={field.name} field={field} />
+                    </ModelIndex.Table.Cell>
+                  );
                 }
                 return (
                   <ModelIndex.Table.Cell
