@@ -1,11 +1,10 @@
-import { useFormContext } from 'react-hook-form';
+import { useFormContext } from '@autoinvent/conveyor';
 import { Link } from '@tanstack/react-router';
 
-export const IdCell = ({ model }: { model: string }) => {
+export const IdValue = ({ model }: { model: string }) => {
   const fieldName = 'id';
   const { getValues } = useFormContext() ?? {};
   const value = getValues?.(fieldName);
-  console.log(getValues);
   return (
     <Link
       to={`/${model}/${value}`}

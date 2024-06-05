@@ -9,7 +9,7 @@
     "dev": "vite"
   },
   "dependencies": {
-    "@autoinvent/conveyor": "file:autoinvent-conveyor-1.0.0.tgz",
+    "@autoinvent/conveyor": "^1.0.2",
     "@autoinvent/conveyor-admin": "file:autoinvent-conveyor-admin-1.0.0.tgz",
     "graphql": "^16.8.1",
     "graphql-request": "^7.0.1",

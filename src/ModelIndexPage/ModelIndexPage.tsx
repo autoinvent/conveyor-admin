@@ -20,8 +20,8 @@ import {
 } from '@/hooks';
 import { parseMQLType } from '@/utils';
 
-import { IdCell } from './IdCell';
-import { RelationshipCell } from './RelationshipCell';
+import { IdValue } from './IdValue';
+import { RelationshipField } from './RelationshipField';
 
 export interface ModelIndexPage {
   model?: string;
@@ -199,13 +199,18 @@ export const ModelIndexPage = ({ model, children }: ModelIndexPage) => {
                           key={field.name}
                           fieldName={field.name}
                         >
-                          <IdCell model={currModel} />
+                          <IdValue model={currModel} />
                         </ModelIndex.Table.Cell>
                       );
                     }
                     if (isModelType(field)) {
                       return (
-                        <RelationshipCell key={field.name} field={field} />
+                        <ModelIndex.Table.Cell
+                          key={field.name}
+                          fieldName={field.name}
+                        >
+                          <RelationshipField field={field} />
+                        </ModelIndex.Table.Cell>
                       );
                     }
                     return (
