@@ -5,7 +5,9 @@
   "description": "GraphiQL for Magql",
   "license": "BlueOak-1.0.0",
   "author": "Moebius Solutions",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/conveyor-admin.umd.cjs",
   "module": "./dist/conveyor-admin.js",
   "types": "./dist/types/index.d.ts",
@@ -29,7 +31,7 @@
     "lint": "pnpx @biomejs/biome lint --apply *"
   },
   "dependencies": {
-    "@autoinvent/conveyor": "file:autoinvent-conveyor-1.0.1.tgz",
+    "@autoinvent/conveyor": "^1.0.2",
     "@hookform/error-message": "^2.0.1",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-dialog": "^1.0.5",
