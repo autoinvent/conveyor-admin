@@ -1,13 +1,11 @@
 {
   "name": "@autoinvent/conveyor-admin",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GraphiQL for Magql",
   "license": "BlueOak-1.0.0",
   "author": "Moebius Solutions",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "main": "./dist/conveyor-admin.umd.cjs",
   "module": "./dist/conveyor-admin.js",
   "types": "./dist/types/index.d.ts",
