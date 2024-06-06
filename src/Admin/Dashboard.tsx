@@ -19,7 +19,7 @@ export const Dashboard = ({ ...props }: DashboardProps) => {
         className="group fixed inset-y-0 left-0 z-10 w-14 whitespace-nowrap border-[--fg-accent] border-r bg-[--bg-accent] text-[--text-muted] transition-[width] hover:w-fit"
         {...props}
       >
-        <nav className="flex flex-col gap-4 px-2 py-5">
+        <nav className="flex h-full flex-col gap-4 px-2 py-5">
           <div className="inline-flex cursor-default items-start gap-2 overflow-hidden rounded-md py-1 text-start font-semibold text-[--text-color] text-lg transition-colors">
             <img src={ConveyorLogo} alt="Conveyor Logo" className="h-9 w-9" />
             <span className="mt-1.5 ml-1.5 hidden group-hover:inline">
@@ -34,8 +34,8 @@ export const Dashboard = ({ ...props }: DashboardProps) => {
             <LucideHome className="w-9" />
             <span className="ml-2 hidden group-hover:inline">Home</span>
           </Link>
-          <Accordion.Root type="single" collapsible>
-            <Accordion.Item className="transition-all" value="Models">
+          <Accordion.Root className="h-4/5" type="single" collapsible>
+            <Accordion.Item className=" h-full transition-all" value="Models">
               <Accordion.Header className="flex">
                 <Accordion.AccordionTrigger className="flex flex-1 items-center justify-between rounded-md border-0 px-0 py-1.5 font-semibold text-lg transition-all [&[data-state=open]>svg]:rotate-180 hover:bg-[--fg-accent] hover:text-[--text-color]">
                   <LucideBox className="w-9 transition-transform duration-200" />
@@ -43,32 +43,16 @@ export const Dashboard = ({ ...props }: DashboardProps) => {
                   <ChevronDown className="hidden h-4 w-4 shrink-0 transition-transform duration-200 group-hover:inline" />
                 </Accordion.AccordionTrigger>
               </Accordion.Header>
-              <Accordion.AccordionContent className="mt-1 hidden gap-1 text-sm transition-all group-hover:block data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                <div className="overflow-auto">
-                  {Object.keys(models).map((model) => (
-                    <Link
-                      key={model}
-                      to={`/${rootPath}/${model}`}
-                      className="block h-9 w-full rounded-md py-1.5 pr-2 pl-[52px] font-semibold text-lg hover:bg-[--fg-accent] hover:text-[--text-color]"
-                    >
-                      {model}aaaaaaaaaaaaaaaaaa
-                    </Link>
-                  ))}
-                  {new Array(30).fill(1).map((e, index) => {
-                    return (
-                      <Link
-                        key={`${e}-${
-                          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                          index
-                        }`}
-                        to={`/${rootPath}/`}
-                        className="block h-9 w-full rounded-md py-1.5 pr-2 pl-[52px] font-semibold text-lg hover:bg-[--fg-accent] hover:text-[--text-color]"
-                      >
-                        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaa
-                      </Link>
-                    );
-                  })}
-                </div>
+              <Accordion.AccordionContent className="mt-1 hidden h-full flex-col gap-1 overflow-auto text-sm transition-all group-hover:flex data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                {Object.keys(models).map((model) => (
+                  <Link
+                    key={model}
+                    to={`/${rootPath}/${model}`}
+                    className="inline h-9 w-full rounded-md py-1.5 pr-2 pl-[52px] font-semibold text-lg hover:bg-[--fg-accent] hover:text-[--text-color]"
+                  >
+                    {model}
+                  </Link>
+                ))}
               </Accordion.AccordionContent>
             </Accordion.Item>
           </Accordion.Root>
@@ -80,7 +64,7 @@ export const Dashboard = ({ ...props }: DashboardProps) => {
         </nav>
       </aside>
       <div className="ml-14">
-        <main className="mx-[10%] max-w-[80%] p-4 px-6 text-center">
+        <main className="mx-[10%] py-6 text-center">
           <Outlet />
         </main>
       </div>
