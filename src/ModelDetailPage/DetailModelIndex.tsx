@@ -104,7 +104,7 @@ export const DetailModelIndex = ({
       )
       .catch((err) =>
         addAlert({
-          content: `${fieldModel} failed to update: ${err}`,
+          content: `${fieldModel} failed to update: ${JSON.stringify(err)}`,
           className: 'danger',
         }),
       );
@@ -141,7 +141,7 @@ export const DetailModelIndex = ({
       if (isSuccess) {
       } else if (isError) {
         addAlert({
-          content: `Failed to fetch ${modelDisplayName} list: ${error}`,
+          content: `Failed to fetch ${modelDisplayName} list: ${JSON.stringify(error)}`,
           className: 'danger',
         });
       }
@@ -168,7 +168,7 @@ export const DetailModelIndex = ({
             })
             .catch((err) => {
               addAlert({
-                content: `Failed to check delete: ${err}`,
+                content: `Failed to check delete: ${JSON.stringify(err)}`,
                 className: 'danger',
               });
             });
@@ -176,43 +176,45 @@ export const DetailModelIndex = ({
         className="my-6"
       >
         <ModelIndex.Title className="text-2xl" />
-        <ModelIndex.Table>
-          <ModelIndex.Table.Head />
-          <ModelIndex.Table.Body>
-            <ModelIndex.Table.Row>
-              {modelIndexFields.map((field) => {
-                if (field.name === 'id') {
+        <div className="overflow-auto">
+          <ModelIndex.Table>
+            <ModelIndex.Table.Head />
+            <ModelIndex.Table.Body>
+              <ModelIndex.Table.Row>
+                {modelIndexFields.map((field) => {
+                  if (field.name === 'id') {
+                    return (
+                      <ModelIndex.Table.Cell
+                        key={field.name}
+                        fieldName={field.name}
+                      >
+                        <IdValue model={fieldModel} />
+                      </ModelIndex.Table.Cell>
+                    );
+                  }
+                  if (isModelType(field)) {
+                    return (
+                      <ModelIndex.Table.Cell
+                        key={field.name}
+                        fieldName={field.name}
+                      >
+                        <RelationshipField key={field.name} field={field} />
+                      </ModelIndex.Table.Cell>
+                    );
+                  }
                   return (
                     <ModelIndex.Table.Cell
                       key={field.name}
                       fieldName={field.name}
-                    >
-                      <IdValue model={fieldModel} />
-                    </ModelIndex.Table.Cell>
+                    />
                   );
-                }
-                if (isModelType(field)) {
-                  return (
-                    <ModelIndex.Table.Cell
-                      key={field.name}
-                      fieldName={field.name}
-                    >
-                      <RelationshipField key={field.name} field={field} />
-                    </ModelIndex.Table.Cell>
-                  );
-                }
-                return (
-                  <ModelIndex.Table.Cell
-                    key={field.name}
-                    fieldName={field.name}
-                  />
-                );
-              })}
-              <ModelIndex.Table.ActionCell />
-            </ModelIndex.Table.Row>
-          </ModelIndex.Table.Body>
-          <ModelIndex.Table.Fallback />
-        </ModelIndex.Table>
+                })}
+                <ModelIndex.Table.ActionCell />
+              </ModelIndex.Table.Row>
+            </ModelIndex.Table.Body>
+            <ModelIndex.Table.Fallback />
+          </ModelIndex.Table>
+        </div>
         <ModelIndex.Pagination />
       </ModelIndex>
       <ModelFormDeleteModal
@@ -230,7 +232,7 @@ export const DetailModelIndex = ({
             })
             .catch((err) => {
               addAlert({
-                content: `Failed to delete: ${err}`,
+                content: `Failed to delete: ${JSON.stringify(err)}`,
                 className: 'danger',
               });
             });

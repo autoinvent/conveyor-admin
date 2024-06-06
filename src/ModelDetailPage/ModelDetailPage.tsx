@@ -42,7 +42,6 @@ export const ModelDetailPage = ({ model, id }: ModelDetailPageProps) => {
     };
   });
 
-
   const fields = models[currModel]?.fields ?? {};
   const detailFieldNames = Object.keys(fields).filter((fieldName) => {
     const fieldObj = parseMQLType(fieldName, fields[fieldName].update);
@@ -116,7 +115,7 @@ export const ModelDetailPage = ({ model, id }: ModelDetailPageProps) => {
       })
       .catch((err) =>
         addAlert({
-          content: `${currModel} failed to update: ${err}`,
+          content: `${currModel} failed to update: ${JSON.stringify(err)}`,
           className: 'danger',
         }),
       );
@@ -128,7 +127,7 @@ export const ModelDetailPage = ({ model, id }: ModelDetailPageProps) => {
       if (isSuccess) {
       } else if (isError) {
         addAlert({
-          content: `Failed to fetch ${modelDisplayName}: ${error}`,
+          content: `Failed to fetch ${modelDisplayName}: ${JSON.stringify(error)}`,
           className: 'danger',
         });
       }
@@ -149,7 +148,7 @@ export const ModelDetailPage = ({ model, id }: ModelDetailPageProps) => {
             })
             .catch((err) => {
               addAlert({
-                content: `Failed to check delete: ${err}`,
+                content: `Failed to check delete: ${JSON.stringify(err)}`,
                 className: 'danger',
               });
             });
@@ -199,7 +198,7 @@ export const ModelDetailPage = ({ model, id }: ModelDetailPageProps) => {
             })
             .catch((err) => {
               addAlert({
-                content: `Failed to delete: ${err}`,
+                content: `Failed to delete: ${JSON.stringify(err)}`,
                 className: 'danger',
               });
             });

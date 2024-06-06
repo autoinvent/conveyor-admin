@@ -18,6 +18,7 @@ const App = () => {
         />
       </Helmet>
       <Conveyor
+        rootPath="dev"
         fetcher={(params) =>
           request(endpoint, params.document, params.variables)
         }

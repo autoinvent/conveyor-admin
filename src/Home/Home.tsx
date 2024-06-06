@@ -5,6 +5,7 @@ import {
   SearchBar,
   type SearchResult,
   useAlerts,
+  humanizeText,
 } from '@autoinvent/conveyor';
 import { Link, useNavigate } from '@tanstack/react-router';
 
@@ -48,7 +49,7 @@ export const Home = () => {
         setSearchedModels(newSearchedModels);
       } else if (isError) {
         addAlert({
-          content: `Failed to search for ${searchValue}: ${error}`,
+          content: `Failed to search for ${searchValue}: ${JSON.stringify(error)}`,
           className: 'danger',
         });
       }
@@ -66,7 +67,7 @@ export const Home = () => {
       <Lenses activeLens={displayedModelNames.length > 0}>
         <Lens lens={true}>
           <Deck className="mx-auto">
-            {displayedModelNames.map((modelName) => {
+            {displayedModelNames.sort().map((modelName) => {
               return (
                 <CircleCard
                   key={modelName}
@@ -75,7 +76,7 @@ export const Home = () => {
                   }
                 >
                   <CardHeader>
-                    <CardTitle>{modelName}</CardTitle>
+                    <CardTitle>{humanizeText(modelName)}</CardTitle>
                     <CardDescription>
                       {`items: ${searchedModels?.[modelName]?.length ?? 0}`}
                     </CardDescription>
@@ -87,7 +88,9 @@ export const Home = () => {
                           <ul>
                             {Object.keys(models[modelName].fields).map(
                               (field) => {
-                                return <li key={field}>{field}</li>;
+                                return (
+                                  <li key={field}>{humanizeText(field)}</li>
+                                );
                               },
                             )}
                           </ul>
