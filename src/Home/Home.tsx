@@ -24,6 +24,8 @@ export const Home = () => {
   const navigate = useNavigate();
   const { addAlert } = useAlerts();
   const { selected: models } = useConveyor((state) => state.models);
+  const { selected: rootPath } = useConveyor((state) => state.rootPath);
+
   const [searchValue, setSearchValue] = useState('');
   const { data, error, isLoading, isSuccess, isError, operationName } =
     useSearchQuery({ searchValue });
@@ -68,7 +70,7 @@ export const Home = () => {
               return (
                 <CircleCard
                   key={modelName}
-                  onDoubleClick={() => navigate({ to: `/${modelName}` })}
+                  onDoubleClick={() => navigate({ to: `/${rootPath}/${modelName}` })}
                 >
                   <CardHeader>
                     <CardTitle>{modelName}</CardTitle>
@@ -95,7 +97,7 @@ export const Home = () => {
                             {searchedModels?.[modelName]?.map((searchItem) => {
                               return (
                                 <li key={searchItem.value}>
-                                  <Link to={`/${modelName}/${searchItem.id}`}>
+                                  <Link to={`/${rootPath}/${modelName}/${searchItem.id}`}>
                                     {searchItem.value}
                                   </Link>
                                 </li>

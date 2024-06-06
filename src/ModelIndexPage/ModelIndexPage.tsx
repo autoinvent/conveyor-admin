@@ -29,7 +29,8 @@ export interface ModelIndexPage {
 }
 
 export const ModelIndexPage = ({ model, children }: ModelIndexPage) => {
-  const params = useParams({ from: '/$model' });
+  const { selected: rootPath } = useConveyor((state) => state.rootPath);
+  const params = useParams({ from: `/${rootPath}/$model` });
   const currModel: string = model ?? params.model ?? '';
   const navigate = useNavigate();
   const { addAlert } = useAlerts();
@@ -167,7 +168,7 @@ export const ModelIndexPage = ({ model, children }: ModelIndexPage) => {
         tableView={tableView}
         setTableView={setTableView}
         title={humanizeText(currModel)}
-        onCreate={() => navigate({ to: `/${currModel}/create` })}
+        onCreate={() => navigate({ to: `/${rootPath}/${currModel}/create` })}
         onSave={onSave}
         onDelete={async (id: ID) => {
           return checkDeleteMutateAsync(id)

@@ -26,7 +26,9 @@ export interface ModelDetailPageProps {
 }
 
 export const ModelDetailPage = ({ model, id }: ModelDetailPageProps) => {
-  const params = useParams({ from: '/$model/$id' });
+  const { selected: rootPath } = useConveyor((state) => state.rootPath);
+
+  const params = useParams({ from: `/${rootPath}/$model/$id` });
   const navigate = useNavigate();
   const currModel: string = model ?? params.model ?? '';
   const currId: string = id ?? params.id ?? '';
@@ -39,6 +41,7 @@ export const ModelDetailPage = ({ model, id }: ModelDetailPageProps) => {
       models,
     };
   });
+
 
   const fields = models[currModel]?.fields ?? {};
   const detailFieldNames = Object.keys(fields).filter((fieldName) => {
@@ -157,7 +160,7 @@ export const ModelDetailPage = ({ model, id }: ModelDetailPageProps) => {
         <ModelForm.Title>
           <span>
             <Link
-              to={`/${currModel}`}
+              to={`/${rootPath}/${currModel}`}
               className="text-cyan-600 underline underline-offset-1"
             >
               {humanizeText(currModel)}

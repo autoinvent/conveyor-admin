@@ -1,5 +1,6 @@
 import type { ComponentType, ReactNode } from 'react';
 
+import { useConveyor } from '@/Conveyor';
 import { Home } from '@/Home';
 import { ModelCreatePage } from '@/ModelCreatePage';
 import { ModelDetailPage } from '@/ModelDetailPage';
@@ -14,18 +15,19 @@ export interface AdminProps {
 }
 
 export const Admin = ({ RootComponent = Dashboard, children }: AdminProps) => {
+  const { selected: rootPath } = useConveyor((state) => state.rootPath);
   return (
     <Routes RootComponent={RootComponent}>
-      <Route path="/">
+      <Route path={`${rootPath}/`}>
         <Home />
       </Route>
-      <Route path="/$model">
+      <Route path={`${rootPath}/$model`}>
         <ModelIndexPage />
       </Route>
-      <Route path="/$model/create">
+      <Route path={`${rootPath}/$model/create`}>
         <ModelCreatePage />
       </Route>
-      <Route path="/$model/$id">
+      <Route path={`${rootPath}/$model/$id`}>
         <ModelDetailPage />
       </Route>
       {children}

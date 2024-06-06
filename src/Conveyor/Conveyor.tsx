@@ -23,11 +23,13 @@ export interface MQLFetcherParams {
 export type MQLFetcher = (params: MQLFetcherParams) => Promise<MQLResponse>;
 
 export interface ConveyorProps extends Partial<ConveyorStore> {
+  rootPath?: string;
   fetcher: MQLFetcher;
   children?: ReactNode;
 }
 
 export const Conveyor = ({
+  rootPath = '',
   fetcher,
   models = {},
   persistence = {
@@ -39,7 +41,7 @@ export const Conveyor = ({
 }: ConveyorProps) => {
   const queryClient = new QueryClient();
   const [conveyorStore] = useState(
-    new Store<ConveyorStore>({ fetcher, models, persistence, tableViews }),
+    new Store<ConveyorStore>({ rootPath, fetcher, models, persistence, tableViews }),
   );
 
   const isFirstRender = useIsFirstRender();
@@ -47,6 +49,7 @@ export const Conveyor = ({
     if (!isFirstRender.current) {
       conveyorStore.setState(() => {
         return {
+          rootPath,
           fetcher,
           models,
           persistence,
