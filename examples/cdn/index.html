@@ -19,23 +19,23 @@
       Conveyor itself depends on React DOM.
       If you do not want to rely on a CDN, you can host these files locally or nclude them directly in your favored resource bundler.
     -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <link crossorigin href="/dist/styles/index.css" rel="stylesheet" />
-  <script crossorigin src="/dist/conveyor-admin.umd.cjs"></script>
+  <link crossorigin href="https://unpkg.com/@autoinvent/conveyor-admin@1.0.1/dist/styles/index.css" rel="stylesheet" />
   <link crossorigin href="https://unpkg.com/@autoinvent/conveyor@1.0.2/dist/styles/index.css" rel="stylesheet" />
 
 </head>
 
 <body>
   <div id="conveyorAdmin">Loading...</div>
-  <script defer>
-    const Conveyor = window['conveyor-admin'].Conveyor;
+  <script type="module" defer>
+    import React from "https://esm.sh/react@18"
+    import ReactDOMClient from "https://esm.sh/react-dom@18"
+    import {Conveyor} from "https://esm.sh/@autoinvent/conveyor-admin@1.0.1"
 
     const gqlUrl = "/graphql";
-    const root = ReactDOM.createRoot(document.getElementById("conveyorAdmin"))
+    const root = ReactDOMClient.createRoot(document.getElementById("conveyorAdmin"))
     root.render(
       React.createElement(Conveyor, {
+        rootPath: 'dev',
         fetcher: (params) => {
           return fetch(gqlUrl, {
             method: "POST",

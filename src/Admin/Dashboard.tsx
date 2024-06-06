@@ -3,7 +3,7 @@ import { LucideHome, LucideBox, ChevronDown } from 'lucide-react';
 import * as Accordion from '@radix-ui/react-accordion';
 import { Link, Outlet } from '@tanstack/react-router';
 
-import { ConveyorLogo } from '@autoinvent/conveyor';
+import { ConveyorLogo, humanizeText } from '@autoinvent/conveyor';
 
 import { useConveyor } from '@/Conveyor';
 
@@ -44,15 +44,17 @@ export const Dashboard = ({ ...props }: DashboardProps) => {
                 </Accordion.AccordionTrigger>
               </Accordion.Header>
               <Accordion.AccordionContent className="mt-1 hidden h-full flex-col gap-1 overflow-auto text-sm transition-all group-hover:flex data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                {Object.keys(models).map((model) => (
-                  <Link
-                    key={model}
-                    to={`/${rootPath}/${model}`}
-                    className="inline h-9 w-full rounded-md py-1.5 pr-2 pl-[52px] font-semibold text-lg hover:bg-[--fg-accent] hover:text-[--text-color]"
-                  >
-                    {model}
-                  </Link>
-                ))}
+                {Object.keys(models)
+                  .sort()
+                  .map((model) => (
+                    <Link
+                      key={model}
+                      to={`/${rootPath}/${model}`}
+                      className="inline h-9 w-full rounded-md py-1.5 pr-2 pl-[52px] font-semibold text-lg hover:bg-[--fg-accent] hover:text-[--text-color]"
+                    >
+                      {humanizeText(model)}
+                    </Link>
+                  ))}
               </Accordion.AccordionContent>
             </Accordion.Item>
           </Accordion.Root>

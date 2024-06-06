@@ -189,43 +189,45 @@ export const ModelIndexPage = ({ model, children }: ModelIndexPage) => {
         {children === undefined ? (
           <>
             <ModelIndex.Title />
-            <ModelIndex.Table>
-              <ModelIndex.Table.Head />
-              <ModelIndex.Table.Body>
-                <ModelIndex.Table.Row>
-                  {modelIndexFields.map((field) => {
-                    if (field.name === 'id') {
+            <div className="overflow-auto">
+              <ModelIndex.Table>
+                <ModelIndex.Table.Head />
+                <ModelIndex.Table.Body>
+                  <ModelIndex.Table.Row>
+                    {modelIndexFields.map((field) => {
+                      if (field.name === 'id') {
+                        return (
+                          <ModelIndex.Table.Cell
+                            key={field.name}
+                            fieldName={field.name}
+                          >
+                            <IdValue model={currModel} />
+                          </ModelIndex.Table.Cell>
+                        );
+                      }
+                      if (isModelType(field)) {
+                        return (
+                          <ModelIndex.Table.Cell
+                            key={field.name}
+                            fieldName={field.name}
+                          >
+                            <RelationshipField field={field} />
+                          </ModelIndex.Table.Cell>
+                        );
+                      }
                       return (
                         <ModelIndex.Table.Cell
                           key={field.name}
                           fieldName={field.name}
-                        >
-                          <IdValue model={currModel} />
-                        </ModelIndex.Table.Cell>
+                        />
                       );
-                    }
-                    if (isModelType(field)) {
-                      return (
-                        <ModelIndex.Table.Cell
-                          key={field.name}
-                          fieldName={field.name}
-                        >
-                          <RelationshipField field={field} />
-                        </ModelIndex.Table.Cell>
-                      );
-                    }
-                    return (
-                      <ModelIndex.Table.Cell
-                        key={field.name}
-                        fieldName={field.name}
-                      />
-                    );
-                  })}
-                  <ModelIndex.Table.ActionCell />
-                </ModelIndex.Table.Row>
-              </ModelIndex.Table.Body>
-              <ModelIndex.Table.Fallback />
-            </ModelIndex.Table>
+                    })}
+                    <ModelIndex.Table.ActionCell />
+                  </ModelIndex.Table.Row>
+                </ModelIndex.Table.Body>
+                <ModelIndex.Table.Fallback />
+              </ModelIndex.Table>
+            </div>
             <ModelIndex.Pagination />
           </>
         ) : (

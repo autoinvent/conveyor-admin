@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@autoinvent/conveyor": "^1.0.2",
-    "@autoinvent/conveyor-admin": "file:autoinvent-conveyor-admin-1.0.0.tgz",
+    "@autoinvent/conveyor-admin": "^1.0.1",
     "graphql": "^16.8.1",
     "graphql-request": "^7.0.1",
     "react-helmet": "^6.1.0"

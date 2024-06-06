@@ -12,8 +12,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@autoinvent/conveyor-admin':
-        specifier: file:autoinvent-conveyor-admin-1.0.0.tgz
-        version: file:autoinvent-conveyor-admin-1.0.0.tgz(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.0.1
+        version: 1.0.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       graphql:
         specifier: ^16.8.1
         version: 16.8.1
@@ -58,9 +58,8 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@autoinvent/conveyor-admin@file:autoinvent-conveyor-admin-1.0.0.tgz':
-    resolution: {integrity: sha512-qjmzu4Dp04MfcywnN9QUISeIOeSMc7lFfHyEKTR1AMZQG9OLPgOTSzfVmmiE/7YFPHhBZJKoyY+T2KvKvtxmaw==, tarball: file:autoinvent-conveyor-admin-1.0.0.tgz}
-    version: 1.0.0
+  '@autoinvent/conveyor-admin@1.0.1':
+    resolution: {integrity: sha512-7mp9rBDSDqxhTwLjvvI7ePCXTTuIVD8X8TCxEUtk1PBLQrGdvfUTRqOjOWxTdIBa2BorxbaWqU66yTB5t4vDyw==}
     peerDependencies:
       '@types/react': ^18.2.66
       '@types/react-dom': ^18.2.22
@@ -1367,7 +1366,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@autoinvent/conveyor-admin@file:autoinvent-conveyor-admin-1.0.0.tgz(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@autoinvent/conveyor-admin@1.0.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@autoinvent/conveyor': 1.0.2(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@hookform/error-message': 2.0.1(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.51.5(react@18.3.1))(react@18.3.1)
