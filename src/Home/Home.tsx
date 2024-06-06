@@ -24,6 +24,8 @@ export const Home = () => {
   const navigate = useNavigate();
   const { addAlert } = useAlerts();
   const { selected: models } = useConveyor((state) => state.models);
+  const { selected: rootPath } = useConveyor((state) => state.rootPath);
+
   const [searchValue, setSearchValue] = useState('');
   const { data, error, isLoading, isSuccess, isError, operationName } =
     useSearchQuery({ searchValue });
@@ -57,18 +59,20 @@ export const Home = () => {
     searchValue ? searchedModels : models,
   );
   return (
-    <>
-      <h2 className="mx-auto w-[700px]">
+    <div>
+      <h2 className="mx-auto max-w-[1234px]">
         <SearchBar onSearch={(value) => setSearchValue(value)} />
       </h2>
       <Lenses activeLens={displayedModelNames.length > 0}>
         <Lens lens={true}>
-          <Deck className="mx-auto w-[900px]">
+          <Deck className="mx-auto">
             {displayedModelNames.map((modelName) => {
               return (
                 <CircleCard
                   key={modelName}
-                  onDoubleClick={() => navigate({ to: `/${modelName}` })}
+                  onDoubleClick={() =>
+                    navigate({ to: `/${rootPath}/${modelName}` })
+                  }
                 >
                   <CardHeader>
                     <CardTitle>{modelName}</CardTitle>
@@ -95,7 +99,9 @@ export const Home = () => {
                             {searchedModels?.[modelName]?.map((searchItem) => {
                               return (
                                 <li key={searchItem.value}>
-                                  <Link to={`/${modelName}/${searchItem.id}`}>
+                                  <Link
+                                    to={`/${rootPath}/${modelName}/${searchItem.id}`}
+                                  >
                                     {searchItem.value}
                                   </Link>
                                 </li>
@@ -115,6 +121,6 @@ export const Home = () => {
           <div> No models found.</div>
         </Lens>
       </Lenses>
-    </>
+    </div>
   );
 };

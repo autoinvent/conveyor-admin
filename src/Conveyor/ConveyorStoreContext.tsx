@@ -7,6 +7,7 @@ import type { ModelType } from '@/types';
 import type { MQLFetcher } from './Conveyor';
 
 export interface ConveyorStore {
+  rootPath: string,
   fetcher: MQLFetcher;
   models: Record<string, ModelType>;
   persistence: {

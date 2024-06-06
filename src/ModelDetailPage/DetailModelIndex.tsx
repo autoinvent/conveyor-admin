@@ -34,6 +34,7 @@ export const DetailModelIndex = ({
   relationshipId,
   fieldModel,
 }: DetailModelIndexProps) => {
+  const { selected: rootPath } = useConveyor((state) => state.rootPath);
   const navigate = useNavigate();
   const { addAlert } = useAlerts();
   const {

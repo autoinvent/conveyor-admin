@@ -7,7 +7,7 @@ export const CardContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     className={twMerge(
-      'relative flex max-h-[200px] w-[300px] flex-wrap items-center overflow-hidden whitespace-normal px-6 transition-all duration-300 ease-in-out group-hover:h-[200px]',
+      'relative flex max-h-[200px] w-[300px] flex-wrap items-center overflow-hidden px-6 transition-all duration-300 ease-in-out group-hover:h-[200px] group-hover:overflow-y-auto',
       className,
     )}
     ref={ref}

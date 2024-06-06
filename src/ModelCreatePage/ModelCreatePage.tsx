@@ -17,7 +17,8 @@ export interface ModelCreatePageProps {
 }
 
 export const ModelCreatePage = ({ model }: ModelCreatePageProps) => {
-  const params = useParams({ from: '/$model/create' });
+  const { selected: rootPath } = useConveyor((state) => state.rootPath);
+  const params = useParams({ from: `/${rootPath}/$model/create` });
   const currModel: string = model ?? params.model ?? '';
   const navigate = useNavigate();
   const { addAlert } = useAlerts();
@@ -29,6 +30,7 @@ export const ModelCreatePage = ({ model }: ModelCreatePageProps) => {
       models,
     };
   });
+
 
   const fields = models[currModel]?.fields ?? {};
   const creatableFieldNames = Object.keys(fields).filter((fieldName) => {
@@ -91,7 +93,7 @@ export const ModelCreatePage = ({ model }: ModelCreatePageProps) => {
           className: 'success',
           expires: 2000,
         });
-        navigate({ to: `/${currModel}` });
+        navigate({ to: `/${rootPath}/${currModel}` });
       })
       .catch((err) =>
         addAlert({
