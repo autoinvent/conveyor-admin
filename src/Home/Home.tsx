@@ -49,7 +49,7 @@ export const Home = () => {
         setSearchedModels(newSearchedModels);
       } else if (isError) {
         addAlert({
-          content: `Failed to search for ${searchValue}: ${error}`,
+          content: `Failed to search for ${searchValue}: ${JSON.stringify(error)}`,
           className: 'danger',
         });
       }

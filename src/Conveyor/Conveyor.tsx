@@ -9,6 +9,7 @@ import {
   type ConveyorStore,
   ConveyorStoreContext,
 } from './ConveyorStoreContext';
+import { CustomAlert } from './CustomAlert';
 
 export interface MQLResponse {
   [operationName: string]: Record<string, any>;
@@ -41,7 +42,13 @@ export const Conveyor = ({
 }: ConveyorProps) => {
   const queryClient = new QueryClient();
   const [conveyorStore] = useState(
-    new Store<ConveyorStore>({ rootPath, fetcher, models, persistence, tableViews }),
+    new Store<ConveyorStore>({
+      rootPath,
+      fetcher,
+      models,
+      persistence,
+      tableViews,
+    }),
   );
 
   const isFirstRender = useIsFirstRender();
@@ -64,7 +71,7 @@ export const Conveyor = ({
       <ConveyorStoreContext.Provider value={conveyorStore}>
         {children === undefined ? (
           <>
-            <Alerts>
+            <Alerts AlertComponent={CustomAlert}>
               <IntrospectionProvider>
                 <Admin />
               </IntrospectionProvider>

@@ -31,7 +31,6 @@ export const ModelCreatePage = ({ model }: ModelCreatePageProps) => {
     };
   });
 
-
   const fields = models[currModel]?.fields ?? {};
   const creatableFieldNames = Object.keys(fields).filter((fieldName) => {
     const fieldObj = parseMQLType(fieldName, fields[fieldName].create);
@@ -97,7 +96,7 @@ export const ModelCreatePage = ({ model }: ModelCreatePageProps) => {
       })
       .catch((err) =>
         addAlert({
-          content: `${currModel} failed to create: ${err}`,
+          content: `${currModel} failed to create: ${JSON.stringify(err)}`,
           className: 'danger',
         }),
       );

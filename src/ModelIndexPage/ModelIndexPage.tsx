@@ -90,7 +90,7 @@ export const ModelIndexPage = ({ model, children }: ModelIndexPage) => {
       )
       .catch((err) =>
         addAlert({
-          content: `${currModel} failed to update: ${err}`,
+          content: `${currModel} failed to update: ${JSON.stringify(err)}`,
           className: 'danger',
         }),
       );
@@ -127,7 +127,7 @@ export const ModelIndexPage = ({ model, children }: ModelIndexPage) => {
       if (isSuccess) {
       } else if (isError) {
         addAlert({
-          content: `Failed to fetch ${modelDisplayName} list: ${error}`,
+          content: `Failed to fetch ${modelDisplayName} list: ${JSON.stringify(error)}`,
           className: 'danger',
         });
       }
@@ -179,7 +179,7 @@ export const ModelIndexPage = ({ model, children }: ModelIndexPage) => {
             })
             .catch((err) => {
               addAlert({
-                content: `Failed to check delete: ${err}`,
+                content: `Failed to check delete: ${JSON.stringify(err)}`,
                 className: 'danger',
               });
             });
@@ -249,7 +249,7 @@ export const ModelIndexPage = ({ model, children }: ModelIndexPage) => {
             })
             .catch((err) => {
               addAlert({
-                content: `Failed to delete: ${err}`,
+                content: `Failed to delete: ${JSON.stringify(err)}`,
                 className: 'danger',
               });
             });
