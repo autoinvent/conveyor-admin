@@ -52,6 +52,7 @@ export const DetailModelIndex = ({
       [
         {
           path: `${camelToSnakeCase(relationshipModel)}.id`,
+          not: false,
           op: 'eq',
           value: relationshipId,
         },
