@@ -1,7 +1,7 @@
 {
   "name": "@autoinvent/conveyor-admin",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "GraphiQL for Magql",
   "license": "BlueOak-1.0.0",
   "author": "Moebius Solutions",
